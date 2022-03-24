@@ -5,7 +5,7 @@ from images.api.serializers import UploadedImageSerializer
 
 
 class ImageViewSet(viewsets.ModelViewSet):
-    serializer_class = UploadedImageSerializer # TODO: Separate serialzier for List
+    serializer_class = UploadedImageSerializer
     queryset = UploadedImage.objects.all()
 
     def get_queryset(self):

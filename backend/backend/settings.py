@@ -29,8 +29,8 @@ SECRET_KEY = 'django-insecure-eixq#f6=-ef&wtfe@!0cnp0%8vd#l_dtf1+3$dvcbnw4z5#-b4
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'http://localhost:4200',
-    'http://127.0.0.1:4200',
+    'localhost',
+    '127.0.0.1'
 ]
 
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'images',
 ]
 
@@ -86,6 +87,16 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
 }
 
 
