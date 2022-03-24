@@ -40,6 +40,7 @@ def test_post_create_img(client, user, temporary_image):
     assert response.status_code == 201
     assert UploadedImage.objects.count() == 1
 
+
 @pytest.mark.django_db
 def test_post_no_overwrite_user(client, user, superuser, temporary_image):
     data = {
@@ -53,6 +54,7 @@ def test_post_no_overwrite_user(client, user, superuser, temporary_image):
     assert response.status_code == 201
     assert UploadedImage.objects.count() == 1
     assert UploadedImage.objects.first().user == user
+
 
 @pytest.mark.django_db
 def test_list_display_img(client, user, superuser):
