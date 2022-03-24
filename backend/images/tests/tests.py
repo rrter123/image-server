@@ -1,4 +1,5 @@
 import tempfile
+from django.test import override_settings
 
 import pytest
 from django.contrib.auth import get_user_model
@@ -28,6 +29,7 @@ def superuser():
 
 
 @pytest.mark.django_db
+@override_settings(MEDIA_ROOT=tempfile.gettempdir())
 def test_post_create_img(client, user, temporary_image):
     data = {
         'name': 'How to tame the T-rex',
@@ -42,6 +44,7 @@ def test_post_create_img(client, user, temporary_image):
 
 
 @pytest.mark.django_db
+@override_settings(MEDIA_ROOT=tempfile.gettempdir())
 def test_post_no_overwrite_user(client, user, superuser, temporary_image):
     data = {
         'name': 'How to tame the T-rex',
@@ -57,6 +60,7 @@ def test_post_no_overwrite_user(client, user, superuser, temporary_image):
 
 
 @pytest.mark.django_db
+@override_settings(MEDIA_ROOT=tempfile.gettempdir())
 def test_list_display_img(client, user, superuser):
     UploadedImage.objects.create(name='test', user=user, img=None)
     UploadedImage.objects.create(name='test2', user=user, img=None)
